@@ -1,4 +1,3 @@
-
 /*
 //////FUNCTIONS/////////
 ////Function declaration/////
@@ -28,7 +27,6 @@ console.log(age1(2021));
 const age2=(birthyear,currentyear,x)=>(currentyear-birthyear)*x;
 console.log(age2(2019,2037,3));
 */
-
 
 /*
 ///////////Coding Challenge #1//////////
@@ -102,9 +100,6 @@ function checkWinner(avgD,avgK){
 checkWinner(avgDolphins,avgKoalas);
 */
 
-
-
-
 /*
 /////OBJECTS IN JAVASCRIPT///////
 const jonas={
@@ -161,8 +156,6 @@ console.log(jonas.addSummary());
 console.log(jonas['addSummary']());//Calling of a function using brackets.
 */
 
-
-
 /*
 ///////////Coding Challenge #2//////////////
 Steven is still building his tip calculator, using the same rules as before: Tip 15% of 
@@ -203,7 +196,6 @@ console.log(tips);
 const total= [bills[0]+tips[0],bills[1]+tips[1],bills[2]+tips[2]];
 console.log(total);
 */
-
 
 /*
 /////////////Coding Challenge #3/////////////
@@ -246,8 +238,6 @@ console.log(`${mark.calcBMI()>=john.calcBMI()? 'Mark':'John'}'s BMI (${mark.BMI>
 console.log(mark.BMI);
 console.log(john.BMI);
 */
-
-
 
 /*
 ///////////Coding Challenge #4////////////////
