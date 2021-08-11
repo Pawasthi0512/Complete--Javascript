@@ -34,6 +34,10 @@ const restaurant = {
     console.log(a,b,c);
   }
   */
+
+  // spreadOperator: function(a=0,b=0,c=0,d=0,e=45){
+  //   console.log(a,b,c,d,e);
+  // }
 };
 
 // destructuring  objects
@@ -72,4 +76,64 @@ console.log(a,b)
 ///// Passing an object to a object Method/////////
 const obj={ a:4,b:5,c:6};
 restaurant.openDelivery(obj);
+*/
+
+
+/*
+/////////////spread operator/////////
+const arr1=[1,2,3,4];
+const arr2=[5,6,7,8,];
+const withoutSpreadOperatorNewArr=[arr[0],arr[1],arr[2],arr[3],5,6]
+console.log(withoutSpreadOperatorNewArr);
+const withSpreadOperatorNewArr=[...arr,5,6];
+console.log(withSpreadOperatorNewArr);'
+
+
+////merging two array/////////
+const newArr=[...arr1,...arr2];
+console.log(...newArr);
+
+////adding some data to copy of mainMenu/////
+const newMainMenu=[...restaurant.mainMenu,'Potato'];
+console.log(newMainMenu);
+restaurant.mainMenuMenu=[...restaurant.mainMenu,'Potato'];
+console.log(...restaurant.mainMenuMenu);
+
+///copy whole object///////
+const newCopyRestaurant={...restaurant};
+newCopyRestaurant.name="Puneet";
+console.log(newCopyRestaurant);
+
+/////Passing elements of an array in function individually//////
+restaurant.spreadOperator(...arr1);
+*/
+
+/*
+////////Rest operator///////////
+
+const arr1=[1,2,3,4];
+const arr2=[5,6,7,8,];
+const [a,b,...c]=[...arr1,10,11,12];
+const [a,b,c,...d]=[...arr1,12,...arr2];
+const [a, ,c,...d]=[...arr1,12,...arr2];//it will skip 3 from generated new array
+console.log(a,c,d);
+
+///accessing days opening time rest operator///////////
+const {sat, ...weekdays}=restaurant.openingHours;
+console.log(sat,weekdays);
+
+///creating an add function which can take as many arguments as we will pass in it.
+
+const add=function(...element){
+  let sum=0;
+  for (let i=0;i<element.length;i++){
+    sum+=element[i];
+  }
+  console.log(element);
+  console.log(sum);
+}
+add(1,2,3,4);
+add(1,2,3,4,6,7,4,6);
+add(1,2,3,...[4,6,6,5,4]);
+add(...[1,2,3],...[4,6,6,5,4]);
 */
