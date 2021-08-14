@@ -338,7 +338,6 @@ game, it will look like this:
  Hummels: 1,
  Lewandowski: 2
 }
-*/
 
 const game = {
   team1: 'Bayern Munich',
@@ -380,5 +379,131 @@ const game = {
 //   const str=key==='x'?'draw':` ${game[key]}`;
 //   console.log(` Odd of victory ${str} : ${value}`);
 // }
+*/
 
 
+/*
+..........Sets............
+
+const playersName= new Set(['Rohit','Kohli','KL Rahul','Kohli','Rahul','Rohit']);
+// console.log(...playersName);
+// console.log(playersName.size);
+// console.log(playersName.has('Rahul'));
+playersName.add('Jadeja');
+console.log(playersName.add('Rahul'));
+console.log(playersName);
+playersName.delete('Kohli')
+console.log(playersName);
+
+const number=[1,2,4,3,2,3,5,33,2,1,4];
+console.log(number.length);
+const uniqueNumber=new Set(number);
+console.log(uniqueNumber);
+for (const num of uniqueNumber) console.log(num);
+const newArr=[...uniqueNumber];
+console.log(newArr);
+*/
+
+
+
+
+/*
+............Maps................
+
+///////Declaration of Maps and adding Values to it////////
+const restaurant= new Map();
+restaurant.set('name','Awasthi\'s Hotel');
+restaurant.set(1,'Sweets');
+restaurant.set(2,' BreakFast').set(3,'lunch');
+restaurant.set(NaN,[1,2,34,1,3]);
+restaurant.set(true,'Yes it is available').set(false,'Sorry We don\'t have this item');
+
+/////Some Useful Properties/////////
+console.log(restaurant);
+console.log(restaurant.keys());
+console.log(restaurant.values());
+const name=restaurant.get('name');
+console.log(name);
+console.log(restaurant.get(1));
+console.log(restaurant.size);
+console.log(restaurant.has());
+console.log(restaurant.delete(true));
+console.log(restaurant.get(NaN));
+console.log(restaurant)
+
+///////Initialization of Maps at declaration time//////////
+const quiz=new Map([
+  ['question','Which is best computer language in world?'],
+  [1,'C'],
+  [2,'C++'],
+  [3,'Java'],
+  [4,'JavaScript'],
+  ['answer',4],
+  [true,'Your answer is Correct'],
+  [false,'Wrong answer'],
+  // [6,'Puneet'],
+  // [6,'Prashant']
+]);
+console.log(quiz)
+console.log(quiz.get('question'));
+console.log(quiz.get(1));
+console.log(quiz.get(2));
+console.log(quiz.get(3));
+console.log(quiz.get(4));
+const answer=Number(prompt('Choose correct option'));
+console.log(quiz.get(answer===quiz.get('answer')))
+
+/////Conversion of Objects in Maps/////
+const newMap= new Map(Object.entries());
+
+/////Conversion of Maps in to arrays/////
+const arr=[...newMap];
+*/
+
+
+/*
+............Coding Challenge #3....................
+
+Let's continue with our football betting app! This time, we have a map called 
+'gameEvents' (see below) with a log of the events that happened during the 
+game. The values are the events themselves, and the keys are the minutes in which 
+each event happened (a football game has 90 minutes plus some extra time).
+Your tasks:
+1. Create an array 'events' of the different game events that happened (no 
+duplicates)
+2. After the game has finished, is was found that the yellow card from minute 64 
+was unfair. So remove this event from the game events log.
+3. Compute and log the following string to the console: "An event happened, on 
+average, every 9 minutes" (keep in mind that a game has 90 minutes)
+4. Loop over 'gameEvents' and log each element to the console, marking 
+whether it's in the first half or second half (after 45 min) of the game, like this:
+[FIRST HALF] 17: ⚽ GOAL
+*/
+const gameEvents = new Map([
+  [17, '⚽ GOAL'],
+  [36, '� Substitution'],
+  [47, '⚽ GOAL'],
+  [61, '� Substitution'],
+  [64, '� Yellow card'],
+  [69, '� Red card'],
+  [70, '� Substitution'],
+  [72, '� Substitution'],
+  [76, '⚽ GOAL'],
+  [80, '⚽ GOAL'],
+  [92, '� Yellow card'],
+]);
+////1.
+const events=[...new Set(gameEvents.values())];
+console.log(events);
+
+////2.
+// gameEvents.delete(64);
+// console.log(gameEvents);
+
+////4.
+// for(const [key,value] of gameEvents){
+//   if(key<=45)
+//   console.log(`[FIRST HALF] ${key}: ${value}`);
+//   else
+//   console.log(`[SECOND HALF] ${key}: ${value}`);
+// }
