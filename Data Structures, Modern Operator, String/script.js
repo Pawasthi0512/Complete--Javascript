@@ -478,7 +478,7 @@ average, every 9 minutes" (keep in mind that a game has 90 minutes)
 4. Loop over 'gameEvents' and log each element to the console, marking 
 whether it's in the first half or second half (after 45 min) of the game, like this:
 [FIRST HALF] 17: ⚽ GOAL
-*/
+
 const gameEvents = new Map([
   [17, '⚽ GOAL'],
   [36, '� Substitution'],
@@ -507,3 +507,68 @@ console.log(events);
 //   else
 //   console.log(`[SECOND HALF] ${key}: ${value}`);
 // }
+
+*/
+
+
+/*
+//............Strings.................
+
+// let airline='TAP Air INDIA';
+// const plane='AI34';
+
+// console.log(airline[5]);
+// console.log(airline.indexOf('A'));
+// console.log(airline.lastIndexOf('A'));
+//...Slicing of strings........
+// console.log(airline.slice(1));
+// console.log(airline.slice(airline.length-2));
+// console.log(airline.slice(1,8));
+// console.log(airline.slice(0,-1));
+
+// console.log(airline.toLowerCase());
+// console.log(airline.toUpperCase());
+// const airline1='  Tap Air \n   India  \n';
+// console.log(airline1.trim());
+
+//...Replacing words of strings....
+// airline+=' AIR India'
+// console.log(airline);
+// console.log(airline.replace('A','S'));
+// console.log(airline.replace(/A/g,'S'));
+// console.log(airline.replace('Air','SIR'));
+// console.log(airline.replace(/A/g,'S'));
+
+
+// ........Coding Challenge #4...........
+// Write a program that receives a list of variable names written in underscore_case 
+// and convert them to camelCase.
+// The input will come from a textarea inserted into the DOM (see code below to 
+// insert the elements), and conversion will happen when the button is pressed.
+// Test data (pasted to textarea, including spaces):
+// underscore_case
+// first_name
+// Some_Variable 
+//  calculate_AGE
+// delayed_departure
+// Should produce this output (5 separate console.log outputs):
+// underscoreCase     ✅
+// firstName          ✅✅
+// someVariable       ✅✅✅
+// calculateAge       ✅✅✅✅
+// delayedDeparture   ✅✅✅✅✅
+
+
+const textarea=['underscore_case','first_name','Some_Variable','calculate_AGE','delayed_departure']
+const camelCaseConvertor=function(item){
+  const word=item.toLowerCase();
+  return(word.replace('_'+word[word.indexOf('_')+1] ,word[word.indexOf('_')+1].toUpperCase()))
+}
+let i=1;
+for(const word of textarea){
+  let newWord=camelCaseConvertor(word);
+  newWord=newWord.padEnd(20,' ');
+  console.log(newWord+ '#'.repeat(i));
+  i++;
+}
+*/
