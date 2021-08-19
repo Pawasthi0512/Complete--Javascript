@@ -177,6 +177,39 @@ btnTransfer.addEventListener('click',function(e){
 
 })
 //......................................................................
+
+
+//...............Functionality of Close Account section.....................
+
+btnClose.addEventListener('click',function(e){
+  e.preventDefault();
+
+  if(inputCloseUsername.value===currentAccount.userName && Number(inputClosePin.value)===currentAccount.pin){
+    
+    const index=accounts.findIndex(acc=>acc.userName===currentAccount.userName);
+    accounts.splice(index,1);
+    containerApp.style.opacity=0;
+    inputCloseUsername.value=inputClosePin.value='';
+    inputClosePin.blur();
+  }
+})
+//.........................................................................
+
+
+//...............Functionality of Close Account section.....................
+
+btnLoan.addEventListener('click',function(e){
+  e.preventDefault();
+
+  const amount=Number(inputLoanAmount.value);
+  if(amount>0 && currentAccount.movements.some(mov=> mov>= amount*0.01)){
+    currentAccount.movements.push(+amount);
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value='';
+  inputLoanAmount.blur();
+})
+//.........................................................................
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
