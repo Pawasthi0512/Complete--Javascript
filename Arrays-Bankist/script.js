@@ -98,9 +98,10 @@ const calcDisplaySummary=function(acc){
 // calcDisplaySummary(account1.movements);
 
 //.................creating function for global Balance...............
-const calcDisplayBalance=function(movements){
-  const balance=movements.reduce(function(acc,cur){return(acc+cur)});
+const calcDisplayBalance=function(acc){
+  const balance=acc.movements.reduce(function(acc,cur){return(acc+cur)});
   labelBalance.textContent=`${balance}€`;
+  acc.balance=balance;
 }
 // calcDisplayBalance(account1.movements);
 //....................................................................
@@ -119,13 +120,25 @@ createUserName(accounts)
 // ...................................................................
 
 
+//................creating function for updating UI............
+const updateUI =function(acc){
+  //display Movements
+  displayMovements(acc.movements);
+  //display Balance
+  calcDisplayBalance(acc);
+  //display summary
+  calcDisplaySummary(acc);
+}
+// ...................................................................
+
+
 //...............Functionality of Login ..............................
 let currentAccount;
 btnLogin.addEventListener('click',function(e){
   //preventing default action
   e.preventDefault();
   
-  currentAccount=accounts.find(account=>account.userName===inputLoginUsername.value);  
+  currentAccount=accounts.find(acc=>acc.userName===inputLoginUsername.value);  
   //checking for correct Login Pin
   if(currentAccount?.pin===Number(inputLoginPin.value)){
     
@@ -134,12 +147,8 @@ btnLogin.addEventListener('click',function(e){
     containerApp.style.opacity=1;
     //display Welcome massage
     labelWelcome.textContent=`Welcome back, ${currentAccount.owner.split(' ')[0]}`;
-    //display Movements
-    displayMovements(currentAccount.movements);
-    //display Balance
-    calcDisplayBalance(currentAccount.movements);
-    //display summary
-    calcDisplaySummary(currentAccount);
+    //updating UI
+    updateUI(currentAccount);
   }
   else{
     inputLoginUsername.value=inputLoginPin.value='';
@@ -148,6 +157,26 @@ btnLogin.addEventListener('click',function(e){
   }
 })
 //.....................................................................
+
+
+//...............Functionality of Transfer section.....................
+
+btnTransfer.addEventListener('click',function(e){
+  e.preventDefault();
+  
+  const amount=Number(inputTransferAmount.value);
+  const recieverAcc=accounts.find(acc=>acc.userName===inputTransferTo.value);
+
+  if( recieverAcc && recieverAcc!== currentAccount.userName && amount>0 && amount<currentAccount.balance ){
+    currentAccount.movements.push(-amount);
+    recieverAcc.movements.push(amount);
+    updateUI(currentAccount);
+  }
+  inputTransferAmount.value=inputTransferTo.value='';
+  inputTransferAmount.blur();
+
+})
+//......................................................................
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
