@@ -63,10 +63,11 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 
 //............ displaying movements on website..................
-const displayMovements= function(movements){
+const displayMovements= function(movements,sort=false){
   containerMovements.innerHTML='';
   // containerMovements.textContent=' ';
-  movements.forEach(function(mov,i){
+  const movs=sort?movements.slice().sort((a,b)=>a-b):movements;
+  movs.forEach(function(mov,i){
     const type=mov>0?'deposit':'withdrawal';
     const html=
     `<div class="movements__row">
@@ -210,6 +211,16 @@ btnLoan.addEventListener('click',function(e){
   inputLoanAmount.blur();
 })
 //.........................................................................
+
+
+//...............Functionality of sorting button............................
+let sorted=false;
+btnSort.addEventListener('click',function(e){
+  e.preventDefault();
+  displayMovements(currentAccount.movements,!sorted);
+  sorted =!sorted;
+})
+//.........................................................................
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -220,7 +231,7 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -327,4 +338,29 @@ Test data:
 // //4....
 // calcAverageHumanAge(data1);
 // calcAverageHumanAge(data2);
+*/
+
+
+/* 
+.............sort method for array.........................
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const newArr =['puneet','Puneet','PUneet','awasthi','aWasthi',34,23,64,100];
+// newArr.sort();
+// console.log(newArr);
+// console.log(movements.sort()); sort in lexical order
+
+//ascending order
+movements.sort((a,b)=> a-b)
+// movements.sort(function(a,b){
+//   if(a>b) return 1;
+//   if(a<b) return -1;
+// })
+//descending order
+movements.sort((a,b)=> b-a)
+// movements.sort(function(a,b){
+//   if(a>b) return -1;
+//   if(a<b) return 1;
+// })
+console.log(movements)
 */
