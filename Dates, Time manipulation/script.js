@@ -22,8 +22,8 @@ const account1 = {
     '2020-04-01T10:17:24.185Z',
     '2020-05-08T14:11:59.604Z',
     '2020-05-27T17:01:17.194Z',
-    '2020-07-11T23:36:17.929Z',
-    '2020-07-12T10:51:36.790Z',
+    '2021-08-16T23:36:17.929Z',
+    '2021-08-22T10:51:36.790Z',
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
@@ -81,6 +81,24 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
+////Formatting Movements Dates
+const formateMovementDates=function(date,locale){
+  const calcDays=(date)=>Math.round(Math.abs(date-new Date())/(1000*60*60*24));
+  const days=calcDays(date);
+  // console.log(days)
+  if(days===0) return 'Today';
+  if(days===1) return 'Yesterday';
+  if(days<=7) return `${days} days ago`;
+  // const year=date.getFullYear();
+  // const month=`${date.getMonth()}`.padStart(2,0);
+  // const d=`${date.getDate()}`.padStart(2,0);
+  // return`${d}/${month}/${year}`;
+
+  //Using international formatting library
+  return new Intl.DateTimeFormat(locale).format(date);
+}
+
+//displaying movement dates//
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
 
@@ -88,11 +106,10 @@ const displayMovements = function (acc, sort = false) {
 
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
+
     const date=new Date(acc.movementsDates[i]);
-    const year=date.getFullYear();
-    const month=`${date.getMonth()}`.padStart(2,0);
-    const d=`${date.getDate()}`.padStart(2,0);
-    const tempDate=`${d}/${month}/${year}`;
+    const tempDate=formateMovementDates(date,acc.locale);
+
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
@@ -172,19 +189,19 @@ const updateUI = function (acc) {
 // Event handlers
 let currentAccount;
 //Faking account
-// currentAccount=account1;
+currentAccount=account1;
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
 
-  currentAccount = accounts.find(
-    acc => acc.username === inputLoginUsername.value
-  );
-  console.log(currentAccount);
+  // currentAccount = accounts.find(
+  //   acc => acc.username === inputLoginUsername.value
+  // );
+  // console.log(currentAccount);
 
-  if (currentAccount?.pin === Number(inputLoginPin.value)) {
-  // if (currentAccount?.pin === 1111) {
+  // if (currentAccount?.pin === Number(inputLoginPin.value)) {
+  if (currentAccount?.pin === 1111) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
@@ -285,3 +302,22 @@ btnSort.addEventListener('click', function (e) {
 // console.log(new Date(2037,1,5,5,54,34));
 // console.log(new Date(20*365*24*60*60*1000+5*24*60*60*1000));
 // ........................................................
+
+//.................Formatting Dates and Time................
+////////getting data from browser//////////
+// const locale=navigator.language
+// console.log(locale)
+
+// const temp=new Date();
+// const option={
+//   hour:'numeric',
+//   minute: 'numeric',
+//   day: 'numeric',
+//   month: 'long',
+//   year: 'numeric',
+//   weekday: 'long',
+// }
+// const formattedDate=new Intl.DateTimeFormat('en-IN',option).format(temp);
+// console.log(formattedDate);
+// console.log(option)
+//............................................................
